@@ -18,41 +18,36 @@ for i in range(1, test_cases+1):
         k=0 
         a_start = a
         b_start = b
-        while(k<=m):
+        while(k<m):
             
-            visited_list.append([a,b])
-            if [a,b] not in visited_list or [b,a] not in visited_list and a!=b:
+            
+            #if [a,b] not in visited_list and [b,a] not in visited_list and a!=b:
+            #visited_list.append([a,b])
+            if a!=j and a!=b:
+                if know_list[a][b] != 'Y' and j<m:
 
-                if know_list[a][b] == 'Y':
-                    
-                    introduction_times.append(introduction_time)
-                    k+=1
-                    j=0
-                    a=a_start
-                    b=k
-                    introduction_time = 0
-                    
-                    
+                    if know_list[a][j] == 'Y':
+                        print("Yes",a,j)
+                        introduction_time += 1
+                        
+                        
+                        if know_list[b][j] == 'N':
+                            j = 0
+                        a = b
+              
                 else:
-                    #for j in range(m):
-                        if know_list[a][j] == 'Y':
-                            introduction_time += 1
-                            a = b
-                            
-                            
-                        elif know_list[b][j] == 'Y':
-                            introduction_time += 1
-                        b = j
-                        print(a,b)
+                    if know_list[a][b] == 'Y':
+                        print(a, b, "introduced")
+                        introduction_times.append(introduction_time)
+                    k+=1
+                    j=k                    
+                    a=a_start
+                    b=b_start
+                    introduction_time = 0
+            b = j   
+            print(a,b)
                         
             j+=1
-            
-            if j>m:
-                k+=1
-                j=0
-                a=a_start
-                b=k
-                introduction_time = 0
         print(introduction_times)
         
 
